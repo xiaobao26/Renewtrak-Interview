@@ -15,10 +15,10 @@ public sealed class Node
 public static class LinkedListPuzzles
 {
     /// <summary>
-    /// Insert node starting from list end to list start
+    /// Builds a singly linked list from an array of integers.
     /// </summary>
     /// <param name="values">User input a sequence of integers</param>
-    /// <returns></returns>
+    /// <returns>The head</returns>
     /// <exception cref="ArgumentException"></exception>
     public static Node BuildList(int[] values)
     {
@@ -35,10 +35,10 @@ public static class LinkedListPuzzles
     }
     
     /// <summary>
-    /// 
+    /// Uses the classic two-pointer
     /// </summary>
     /// <param name="head"></param>
-    /// <returns></returns>
+    /// <returns>The integer value stored in the 5th-from-tail node.</returns>
     /// <exception cref="AggregateException"></exception>
     /// <exception cref="InvalidOperationException"></exception>
     public static int GetFifthFromTail(Node head)
