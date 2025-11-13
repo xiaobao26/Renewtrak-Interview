@@ -13,29 +13,41 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-        
+
         if (builder.Environment.IsProduction())
         {
             Directory.CreateDirectory("/home/data");
         }
-        
+
         // CORS
         const string CorsPolicy = "_swa";
         var swaOrigin = builder.Configuration["AllowedFrontend"];
         builder.Services.AddCors(
-            o => o.AddPolicy(CorsPolicy, 
-            p => p.WithOrigins(swaOrigin).AllowAnyMethod().AllowAnyHeader()
-            ));
-        
+            o => o.AddPolicy(CorsPolicy, p =>
+            {
+                // Development Env
+                if (string.IsNullOrWhiteSpace(swaOrigin))
+                {
+                    p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                }
+                // Production Env
+                else
+                {
+                    p.WithOrigins(swaOrigin)
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                }
+            }));
+
         // Register DbContext to Container
         builder.Services.AddDbContext<AppDbContext>(opt =>
         {
             opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
         });
-        
+
         // Register Controllers
         builder.Services.AddControllers();
-        
+
         // Add services to the container.
         builder.Services.AddScoped<IGlossaryRepository, GlossaryRepository>();
         builder.Services.AddScoped<IGlossaryService, GlossaryService>();
@@ -51,23 +63,24 @@ public class Program
         });
 
         var app = builder.Build();
-        
+
         app.UseSwagger();
         app.UseSwaggerUI();
-        
+
         app.UseMiddleware<ExceptionHandlingMiddleware>();
 
         app.UseHttpsRedirection();
         app.UseCors(CorsPolicy);
         app.UseAuthorization();
         app.MapControllers();
-        
+
         // Seed data
         using (var scope = app.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
             db.Database.Migrate();
         }
+
         app.Run();
     }
 }

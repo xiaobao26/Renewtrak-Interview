@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import GlossaryForm from './components/GlossaryForm';
 import GlossaryTable from './components/GlossaryTable';
 
-const BASE = '/api/Glossary';
+const BASE = '/api/glossary-terms';
 
 type Item = { id: string; term: string; definition: string };
 

@@ -5,12 +5,12 @@ using Part_B.Domain.Interfaces;
 namespace Part_B.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
-public class GlossaryController : ControllerBase
+[Route("api/glossary-terms")]
+public class GlossaryTermsController : ControllerBase
 {
     private readonly IGlossaryService _glossaryService;
 
-    public GlossaryController(IGlossaryService glossaryService)
+    public GlossaryTermsController(IGlossaryService glossaryService)
     {
         _glossaryService = glossaryService;
     }
