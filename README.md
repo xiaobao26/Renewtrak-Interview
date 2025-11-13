@@ -35,10 +35,10 @@ Renewtrak-Interview/
       │  ├─ Exceptions/
       │  └─ Interfaces/
       ├─ Middlewares/
-      ├─ Migrations/
+      ├─ Migrations/               # EF Core migrations
       ├─ Program.cs
       ├─ appsettings.json
-      ├─ appsettings.Development.json
+      ├─ appsettings.Production.json
       └─ appsettings.Development.json.Sample
 ```
 
@@ -80,5 +80,10 @@ dotnet test  # run xUnit tests for Part A
 cd Part\ B
 dotnet test  # run xUnit tests for Part B 
 ```
+## CI/CD
+- Backend (App Service)
+- Frontend (Static Web App)
+
 ### Backend dev: http://localhost:5089/swagger/index.html
 ### Backend production: https://glossaryapp-hnamcxg6f5a9ehe4.australiaeast-01.azurewebsites.net/swagger/index.html
+### Frontend production: https://proud-cliff-02da6df00.3.azurestaticapps.net
