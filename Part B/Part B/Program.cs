@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Part_B.Infrastructure;
+
 namespace Part_B;
 
 public class Program
@@ -5,6 +8,13 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+        
+        // Register DbContext to Container
+        builder.Services.AddDbContext<AppDbContext>(opt =>
+        {
+            opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+        });
+
 
         // Add services to the container.
         builder.Services.AddAuthorization();
