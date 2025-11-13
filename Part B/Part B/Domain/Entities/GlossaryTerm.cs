@@ -1,4 +1,4 @@
-namespace Part_B.Domain;
+namespace Part_B.Domain.Entities;
 
 public class GlossaryTerm
 {

@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Part_B.Domain;
+using Part_B.Domain.Entities;
 
 namespace Part_B.Infrastructure;
 
