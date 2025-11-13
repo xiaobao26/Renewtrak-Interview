@@ -20,7 +20,7 @@ public class GlossaryService : IGlossaryService
         return entities.Select(e => new GlossaryTermResponseDto(e.Id, e.Term, e.Definition)).ToList();
     }
 
-    public async Task<GlossaryTermResponseDto?> GetByIdAsync(Guid id, CancellationToken ct)
+    public async Task<GlossaryTermResponseDto> GetByIdAsync(Guid id, CancellationToken ct)
     {
         var entity = await _glossaryRepository.GetByIdAsync(id, ct);
         
@@ -47,7 +47,7 @@ public class GlossaryService : IGlossaryService
         return new GlossaryTermResponseDto(entity.Id, entity.Term, entity.Definition);
     }
 
-    public async Task<GlossaryTermResponseDto?> UpdateAsync(Guid id, GlossaryTermRequestDto request, CancellationToken ct)
+    public async Task<GlossaryTermResponseDto> UpdateAsync(Guid id, GlossaryTermRequestDto request, CancellationToken ct)
     {
         var entity = await _glossaryRepository.GetByIdAsync(id, ct);
         if (entity is null) 
