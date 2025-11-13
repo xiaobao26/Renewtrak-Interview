@@ -29,6 +29,12 @@ jobs:
       - name: Install deps
         working-directory: "Part B/frontend-glossary-app"
         run: npm ci
+        
+      - name: Build app
+        working-directory: "Part B/frontend-glossary-app"
+        env:
+          VITE_API_BASE: "https://glossaryapp-hnamcxg6f5a9ehe4.australiaeast-01.azurewebsites.net"
+        run: npm run build
 
       - name: Build And Deploy
         id: builddeploy
@@ -39,9 +45,8 @@ jobs:
           action: "upload"
           skip_app_build: true
           app_location: "Part B/frontend-glossary-app"
-          app_artifact_location: "Part B/frontend-glossary-app/dist"
+          app_artifact_location: "dist"
           api_location: ""
-          output_location: "dist"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
