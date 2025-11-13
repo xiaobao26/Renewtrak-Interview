@@ -14,6 +14,11 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
         
+        if (builder.Environment.IsProduction())
+        {
+            Directory.CreateDirectory("/home/data");
+        }
+        
         // Register DbContext to Container
         builder.Services.AddDbContext<AppDbContext>(opt =>
         {
@@ -38,13 +43,9 @@ public class Program
         });
 
         var app = builder.Build();
-
-        // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
+        
+        app.UseSwagger();
+        app.UseSwaggerUI();
         
         app.UseMiddleware<ExceptionHandlingMiddleware>();
 
