@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import GlossaryForm from './components/GlossaryForm';
 import GlossaryTable from './components/GlossaryTable';
 
-const BASE = '/api/glossary-terms';
+const API_BASE = (import.meta.env.VITE_API_BASE ?? '').replace(/\/+$/, '');
+const BASE = `${API_BASE}/api/glossary-terms`;
 
 type Item = { id: string; term: string; definition: string };
 

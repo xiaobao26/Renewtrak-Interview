@@ -1,6 +1,6 @@
 import type { GlossaryItem } from './types';
 
-const API_BASE = import.meta.env.VITE_API_BASE;
+const API_BASE = (import.meta.env.VITE_API_BASE ?? '').replace(/\/+$/, '');
 const BASE = `${API_BASE}/api/glossary-terms`;
 
 async function req<T>(url: string, init?: RequestInit): Promise<T> {
