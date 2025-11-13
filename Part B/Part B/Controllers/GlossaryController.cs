@@ -16,25 +16,21 @@ public class GlossaryController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<GlossaryTermDto>>> GetAll(CancellationToken ct)
+    public async Task<ActionResult<IEnumerable<GlossaryTermResponseDto>>> GetAll(CancellationToken ct)
     {
         var result = await _glossaryService.GetAllAsync(ct);
         return Ok(result);
     }
 
     [HttpGet("{id:guid}")]
-    public async Task<ActionResult<GlossaryTermDto>> GetById(Guid id, CancellationToken cancellationToken)
+    public async Task<ActionResult<GlossaryTermResponseDto>> GetById(Guid id, CancellationToken cancellationToken)
     {
         var result = await _glossaryService.GetByIdAsync(id, cancellationToken);
-
-        if (result is null)
-            return NotFound();
-
         return Ok(result);
     }
 
     [HttpPost]
-    public async Task<ActionResult<GlossaryTermDto>> Create([FromBody] GlossaryTermDto request,
+    public async Task<ActionResult<GlossaryTermResponseDto>> Create([FromBody] GlossaryTermRequestDto request,
         CancellationToken cancellationToken)
     {
         var result = await _glossaryService.CreateAsync(request, cancellationToken);
@@ -42,24 +38,17 @@ public class GlossaryController : ControllerBase
     }
 
     [HttpPut("{id:guid}")]
-    public async Task<ActionResult<GlossaryTermDto>> Update(Guid id, [FromBody] GlossaryTermDto request,
+    public async Task<ActionResult<GlossaryTermResponseDto>> Update(Guid id, [FromBody] GlossaryTermRequestDto request,
         CancellationToken cancellationToken)
     {
         var result = await _glossaryService.UpdateAsync(id, request, cancellationToken);
-
-        if (result is null)
-            return NotFound();
-
         return Ok(result);
     }
 
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
     {
-        var result = await _glossaryService.DeleteAsync(id, cancellationToken);
-        if (!result)
-            return NotFound();
-
+        await _glossaryService.DeleteAsync(id, cancellationToken);
         return NoContent();
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.OpenApi;
 using Part_B.Domain.Interfaces;
 using Part_B.Infrastructure;
 using Part_B.Infrastructure.Repositories;
+using Part_B.Middlewares;
 using Part_B.Services;
 
 namespace Part_B;
@@ -44,11 +45,19 @@ public class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+        
+        app.UseMiddleware<ExceptionHandlingMiddleware>();
 
         app.UseHttpsRedirection();
-
         app.UseAuthorization();
-
+        app.MapControllers();
+        
+        // Seed data
+        using (var scope = app.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+            db.Database.Migrate();
+        }
         app.Run();
     }
 }
