@@ -19,6 +19,14 @@ public class Program
             Directory.CreateDirectory("/home/data");
         }
         
+        // CORS
+        const string CorsPolicy = "_swa";
+        var swaOrigin = builder.Configuration["AllowedFrontend"];
+        builder.Services.AddCors(
+            o => o.AddPolicy(CorsPolicy, 
+            p => p.WithOrigins(swaOrigin).AllowAnyMethod().AllowAnyHeader()
+            ));
+        
         // Register DbContext to Container
         builder.Services.AddDbContext<AppDbContext>(opt =>
         {
@@ -50,6 +58,7 @@ public class Program
         app.UseMiddleware<ExceptionHandlingMiddleware>();
 
         app.UseHttpsRedirection();
+        app.UseCors(CorsPolicy);
         app.UseAuthorization();
         app.MapControllers();
         
