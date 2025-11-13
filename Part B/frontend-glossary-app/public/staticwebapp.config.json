@@ -1,0 +1,15 @@
+{
+    "responseOverrides": {
+        "404": {
+            "rewrite": "/index.html"
+        }
+    },
+    "mimeTypes": {
+        ".mjs": "application/javascript",
+        ".js": "application/javascript",
+        ".css": "text/css",
+        ".json": "application/json",
+        ".map": "application/json",
+        ".wasm": "application/wasm"
+    }
+}
