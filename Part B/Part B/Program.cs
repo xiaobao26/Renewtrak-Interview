@@ -17,7 +17,7 @@ public class Program
         // Register DbContext to Container
         builder.Services.AddDbContext<AppDbContext>(opt =>
         {
-            opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
         });
         
         // Register Controllers

@@ -38,7 +38,6 @@ public class AppDbContext: DbContext
         {
             e.ToTable("GlossaryTerms");
             e.HasKey(x => x.Id);
-            e.Property(x => x.Id).HasDefaultValueSql("NEWID()");
             e.Property(x => x.Term).IsRequired().HasMaxLength(100);
             e.Property(x => x.Definition).IsRequired().HasMaxLength(4000);
 

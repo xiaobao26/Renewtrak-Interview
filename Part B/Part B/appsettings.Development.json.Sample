@@ -6,6 +6,6 @@
     }
   },
   "ConnectionStrings": {
-    "DefaultConnection": "Server=localhost,1433;Database=GlossaryDb;User Id=sa;Password=YOUR_PASSWORD;Encrypt=False;TrustServerCertificate=True"
+    "DefaultConnection": "Data Source=app.db"
   }
 }
