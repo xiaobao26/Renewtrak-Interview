@@ -39,9 +39,11 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_PROUD_CLIFF_02DA6DF00 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
           action: "upload"
-          skip_app_build: true
-          app_location: "Part B/frontend-glossary-app/dist"
+          app_location: "Part B/frontend-glossary-app"
           api_location: ""
+          
+          app_build_command: "npm run build"
+          output_location: "dist"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
