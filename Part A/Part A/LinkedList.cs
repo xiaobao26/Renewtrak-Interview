@@ -39,12 +39,12 @@ public static class LinkedListPuzzles
     /// </summary>
     /// <param name="head"></param>
     /// <returns>The integer value stored in the 5th-from-tail node.</returns>
-    /// <exception cref="AggregateException"></exception>
+    /// <exception cref="ArgumentNullException"></exception>
     /// <exception cref="InvalidOperationException"></exception>
     public static int GetFifthFromTail(Node head)
     {
         if (head is null)
-            throw new AggregateException($"This is an empty LinkedList");
+            throw new ArgumentNullException(nameof(head), "Linked list is empty.");
 
         Node slow = head;
         Node? fast = head;
