@@ -1,0 +1,1 @@
+### Backend production: https://glossaryapp-hnamcxg6f5a9ehe4.australiaeast-01.azurewebsites.net/swagger/index.html
