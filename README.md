@@ -84,6 +84,19 @@ dotnet test  # run xUnit tests for Part B
 - Backend (App Service)
 - Frontend (Static Web App)
 
-### Backend dev: http://localhost:5089/swagger/index.html
-### Backend production: https://glossaryapp-hnamcxg6f5a9ehe4.australiaeast-01.azurewebsites.net/swagger/index.html
+## Troubleshooting
+#### Problem:
+- Visiting the Static Web Apps (SWA) URL shows the default “Congratulations on your new site!” page.
+- Browser console shows:
+  - TypeError: 'application/octet-stream' is not a valid JavaScript MIME type
+#### Root cause:
+- Oryx build + space in path - The SWA action tried to build from Part B/frontend-glossary-app.
+- Missing JS/MJS MIME mapping
+####   Fix strategy
+- Do not let SWA/Oryx build. Build the app in the subfolder.
+- Avoid spaces in the deploy path. Copy the built dist/ to a flat folder named upload/ at the repo root.
+- Set explicit MIME types. Ensure staticwebapp.config.json (with JS/MJS mappings) is present at the root of the deployed folder.
+
 ### Frontend production: https://proud-cliff-02da6df00.3.azurestaticapps.net
+### Backend production: https://glossaryapp-hnamcxg6f5a9ehe4.australiaeast-01.azurewebsites.net/swagger/index.html
+### Backend dev: http://localhost:5089/swagger/index.html
