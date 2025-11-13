@@ -3,13 +3,27 @@
 Renewtrak-Interview/
 ├─ Part A/
 ├─ ├─ Part A.sln
-├─ ├─ PartATests
+├─ ├─ PartATests/
 │  └─ Part A/                   # console app (puzzles)
 │
 └─ Part B/
    ├─ Part B.sln
-   ├─ PartBTests
-   └─ Part B/                  # Web API (ASP.NET Core + EF Core SQLite)
+   ├─ PartBTests/
+   ├─ frontend-glossary-app/           # React + Vite + TS（SPA）
+   │  ├─ package.json
+   │  ├─ vite.config.ts
+   │  ├─ index.html
+   │  ├─ tsconfig.json
+   │  ├─ .env                         
+   │  └─ src/
+   │     ├─ main.tsx
+   │     ├─ App.tsx
+   │     ├─ index.css                  
+   │     └─ components/
+   │        ├─ GlossaryForm.tsx
+   │        └─ GlossaryTable.tsx
+   │
+   └─ Part B/                          # ASP.NET Core Web API
       ├─ Controllers/
       ├─ Services/
       ├─ Infrastructure/
@@ -22,7 +36,10 @@ Renewtrak-Interview/
       │  └─ Interfaces/
       ├─ Middlewares/
       ├─ Migrations/
-      └─ appsettings*.json
+      ├─ Program.cs
+      ├─ appsettings.json
+      ├─ appsettings.Development.json
+      └─ appsettings.Development.json.Sample
 ```
 
 ## How to run Part A
