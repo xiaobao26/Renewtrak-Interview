@@ -81,8 +81,8 @@ cd Part\ B
 dotnet test  # run xUnit tests for Part B 
 ```
 ## CI/CD
-- Backend (App Service)
-- Frontend (Static Web App)
+- Backend (App Service | Basic B1 Plan and setting always on to avoid cold start)
+- Frontend (Static Web App | Free Plan)
 
 ## Troubleshooting
 #### Problem:
