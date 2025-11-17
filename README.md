@@ -41,6 +41,13 @@ Renewtrak-Interview/
       ├─ appsettings.Production.json
       └─ appsettings.Development.json.Sample
 ```
+## Production ready
+- ✅ This project uses SQLite – **no manual database setup is needed**.
+- ✅ On first run, the database will be created and EF Core migrations will apply automatically.
+- ✅ Fully deployed for testing:
+
+- 🌐 Frontend: https://proud-cliff-02da6df00.3.azurestaticapps.net
+- 🌐Backend API: https://glossaryapp-hnamcxg6f5a9ehe4.australiaeast-01.azurewebsites.net/swagger/index.html
 
 ## How to run Part A
 - install .NET 9 SDK (https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
@@ -97,6 +104,4 @@ dotnet test  # run xUnit tests for Part B
 - Avoid spaces in the deploy path. Copy the built dist/ to a flat folder named upload/ at the repo root.
 - Set explicit MIME types. Ensure staticwebapp.config.json (with JS/MJS mappings) is present at the root of the deployed folder.
 
-### Frontend production: https://proud-cliff-02da6df00.3.azurestaticapps.net
-### Backend production: https://glossaryapp-hnamcxg6f5a9ehe4.australiaeast-01.azurewebsites.net/swagger/index.html
 ### Backend dev: http://localhost:5089/swagger/index.html
