@@ -93,12 +93,12 @@ public class GlossaryServiceTests
         var id = Guid.NewGuid();
         var entity = new GlossaryTerm { Id = id, Term = "t", Definition = "d" };
         _mock.Setup(r => r.GetByIdAsync(id, _ct)).ReturnsAsync(entity);
-        _mock.Setup(r => r.RemoveAsync(entity, _ct)).Returns(Task.CompletedTask);
+        _mock.Setup(r => r.Remove(entity));
         _mock.Setup(r => r.SaveChangesAsync(_ct)).Returns(Task.CompletedTask);
 
         await SUT().DeleteAsync(id, _ct);
 
-        _mock.Verify(r => r.RemoveAsync(entity, _ct), Times.Once);
+        _mock.Verify(r => r.Remove(entity), Times.Once);
         _mock.Verify(r => r.SaveChangesAsync(_ct), Times.Once);
     }
     

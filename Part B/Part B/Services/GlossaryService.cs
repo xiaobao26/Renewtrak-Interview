@@ -66,7 +66,7 @@ public class GlossaryService : IGlossaryService
         if (entity is null)
             throw new NotFoundException(nameof(GlossaryTerm), id.ToString());
 
-        await _glossaryRepository.RemoveAsync(entity, ct);
+        _glossaryRepository.Remove(entity);
         await _glossaryRepository.SaveChangesAsync(ct);
     }
 }
