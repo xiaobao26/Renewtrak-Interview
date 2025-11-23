@@ -32,10 +32,9 @@ public class GlossaryRepository : IGlossaryRepository
         await _context.GlossaryTerms.AddAsync(glossaryTerm, cancellationToken);
     }
 
-    public Task RemoveAsync(GlossaryTerm glossaryTerm, CancellationToken cancellationToken)
+    public void Remove(GlossaryTerm glossaryTerm)
     {
         _context.GlossaryTerms.Remove(glossaryTerm);
-        return Task.CompletedTask;
     }
 
     public async Task SaveChangesAsync(CancellationToken cancellationToken)
